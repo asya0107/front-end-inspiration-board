@@ -1,23 +1,40 @@
 import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+// import axios from "axios";
+import Board from "./components/Board";
 
 function App() {
+  const [boardsInfo, setBoardsInfo] = useState([]);
+   const [selectedBoard, setSelectedBoard] = useState({
+     title: "",
+     owner: "",
+     board_id: null,
+   });
+
+   const selectBoard = (board) => {
+     setSelectedBoard(board);
+   };
+   const boardsElements = boardsInfo.map((board) => {
+     return (
+       <li>
+         <Board board={board} onBoardSelect={selectBoard}></Board>
+       </li>
+     );
+   });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="content">
+      <h1>Inspiration Board</h1>
+      <section>
+        <h2>Boards</h2>
+        <ol className="boards-list">{boardsElements}</ol>
+      </section>
+      <section>
+        <h2>Selected Board</h2>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          "Select a Board from the Board List!"
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </section>
     </div>
   );
 }
