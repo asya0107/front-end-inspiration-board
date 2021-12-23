@@ -9,14 +9,13 @@ const Board = (props) => {
        // This function is referenced by the name “updateStudentData” in App
        props.onUpdate(updatedBoard);
    };
-   const nameColor = props.isPresent ? ‘green’ : ‘red’;
+   const showCards = props.isPresent ? 'green' : 'red';
    return (
        <div>
            <ul>
-               <li className={nameColor}>Nickname: {props.name}</li>
-               <li>Email: {props.email}</li>
+               <li>Board Title: {props.title}</li>
            </ul>
-           <button onClick={onAttendanceButtonClick}>Toggle if {props.name} is present</button>
+           <button onClick={showCards}>Toggle if {props.name} is present</button>
        </div>
    );
 };
