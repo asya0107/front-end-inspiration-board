@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from "prop-types";
 
-const NewBoardForm = (props) => {
+const newBoardForm = (props) => {
    const [formFields, setFormFields] = useState({
        title: '',
        owner: ''
