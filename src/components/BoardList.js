@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import Board from "./Board";
 
+// this is finalized
 const BoardList = (props) => {
-  const boardComponents = props.board.map((board, index) => {
+  const boardComponents = props.board.map((board) => {
     return (
-      <li key={index}>
-        <Board id={board.id} title={board.title} owner={board.owner}></Board>
+      <li>
+        <Board board={board} onBoardSelect={selectBoard}></Board>
       </li>
     );
   });
