@@ -35,21 +35,7 @@ function App() {
   const toggleNewBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
 
   const deleteAll = () => {
-    if (window.confirm('Are you really sure? Please be gentle with this demo.')) {
-      axios.delete(`${process.env.REACT_APP_BACKEND_URL}/destroy_all`).then((response) => {
-        console.log('response', response.data);
-        setBoardsData([response.data.default_board]);
-        setSelectedBoard({
-          title: '',
-          owner: '',
-          board_id: null
-        });
-      }).catch((error) => {
-        console.log('Error:', error);
-        alert('Something went wrong! :(');
-      });
-    }
-  }
+    // add functionality
 
   return (
     <div className="App">
