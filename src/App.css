@@ -1,38 +1,127 @@
-.App {
+body {
+  margin: 3rem;
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+}
+
+h1,
+h2 {
+  font-family: "Permanent Marker", cursive;
+  padding: 0.6em 1em;
+  display: inline-block;
+  color: black;
+}
+
+h1 {
+  background-color: yellow;
+  transform: rotate(-5deg) skew(-10deg);
+}
+
+h2 {
+  /* border-bottom: 10px solid lightgrey; */
+  border: 2px solid black;
+  box-shadow: -15px 7px 1px black;
+}
+
+.boards__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.boards__list {
+  max-height: 9rem;
+  min-height: 9rem;
+  overflow: scroll;
+  margin-right: 2rem;
+  border: black solid 1px;
+}
+
+.new-board-form__container,
+.new-card-form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.new-board-form__form,
+.new-card-form__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.new-board-form__form-submit-btn,
+.new-board-form__toggle-btn,
+.new-card-form__form-submit-btn {
+  padding: 0.5em;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.cards__container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.card-items__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  margin: 2rem;
+}
+
+.card-item {
+  font-family: "Homemade Apple", cursive;
+  font-family: 'Concert One', cursive;
+  background-color: rgb(255, 248, 165);
+  box-shadow: -10px 7px 7px lightgrey;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.card-item__controls {
+  font-family: "Open Sans", sans-serif;
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.card-item__message {
+  text-align: center;
+  font-size: 1.4rem;
+  word-break: break-word;
+}
+
+.card-item__controls > li:hover, .footer__delete-btn:hover {
+  text-decoration: underline;
+}
+
+input {
+  box-sizing: content-box;
+}
+
+.invalid-form-input {
+  border: red solid 1px;
+  box-shadow: 0 0 7px red;
+}
+
+footer {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.page__container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content__container {
+  flex: 1 0 auto;
 }
