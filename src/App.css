@@ -1,20 +1,26 @@
 body {
   margin: 3rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Geneva, sans-serif;
   color: black;
+  background: linear-gradient(to right top, #65dfc9, #d26ceb);
+  /* background: linear-gradient(to right top, #65dfc9, #dfd765); */
 }
 
 h1,
 h2 {
-  font-family: "Permanent Marker", cursive;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   padding: 0.6em 1em;
   display: inline-block;
   color: black;
+  border-radius: 1rem;
 }
 
 h1 {
-  background-color: yellow;
+  /* background-color: yellow; */
   transform: rotate(-5deg) skew(-10deg);
+  background: white;
+  background: linear-gradient(to right bottom, #ffff00, #ffffff4d);
+  border-radius: 30px;
 }
 
 h2 {
@@ -26,14 +32,16 @@ h2 {
 .boards__container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 80px;
+  margin: 2rem;
 }
 
 .boards__list {
   max-height: 9rem;
   min-height: 9rem;
   overflow: scroll;
-  margin-right: 2rem;
   border: black solid 1px;
+  
 }
 
 .new-board-form__container,
@@ -41,6 +49,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 }
 
 .new-board-form__form,
@@ -119,7 +128,12 @@ footer {
 .page__container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
+  background: white;
+  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
+  padding: 2em;
+  border-radius: 30px;
+  margin: 1em;
 }
 
 .content__container {

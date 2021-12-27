@@ -1,13 +1,18 @@
 import { useState } from "react";
 
 const NewBoardForm = (props) => {
-  const [title, setTitle] = useState("");
-  const [owner, setOwner] = useState("");
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const [formFields, setFormFields] = useState({
+    title: "",
+    owner: "",
+  });
+  const titleChangeHandler = (changeEvent) => {
+    // ...formFields copies the formFields object & all its data(i.e. the data includes the current state of title and owner)
+    // title: changeEvent.target.value sets the title atrribute, in the ...formFields object, to the equivalent value associated in the changeEvent object
+    // The cloned ...formFields object will already have a title and owner key from the cloning, but listing the new value afterward will overwrite the cloned value.
+    setFormFields({ ...formFields, title: changeEvent.target.value });
   };
-  const handleOwnerChange = (e) => {
-    setOwner(e.target.value);
+  const ownerChangeHandler = (changeEvent) => {
+    setFormFields({ ...formFields, owner: changeEvent.target.value });
   };
 
   const submitNewBoard = (e) => {
@@ -22,31 +27,36 @@ const NewBoardForm = (props) => {
       <label>Title</label>
       <input
         type="text"
-        value={title}
-        onChange={handleTitleChange}
+        // The <input> element has its value set by state
+        value={formFields.title}
+        onChange={titleChangeHandler}
         className={
-          title.length === 0 || title.length > 40 ? "invalid-form-input" : ""
+          formFields.title.length === 0 || formFields.title.length > 40
+            ? "invalid-form-input"
+            : ""
         }
       ></input>
       <label>Owner's Name</label>
       <input
         type="text"
-        value={owner}
-        onChange={handleOwnerChange}
+        value={formFields.owner}
+        onChange={ownerChangeHandler}
         className={
-          owner.length === 0 || owner.length > 40 ? "invalid-form-input" : ""
+          formFields.owner.length === 0 || formFields.owner.length > 40
+            ? "invalid-form-input"
+            : ""
         }
       ></input>
       <p>
-        Preview: {title} - {owner}
+        Preview: {formFields.title} - {formFields.owner}
       </p>
       <input
         type="Submit"
         disabled={
-          title.length === 0 ||
-          owner.length === 0 ||
-          title.length > 40 ||
-          owner.length > 40
+          formFields.title.length === 0 ||
+          formFields.owner.length === 0 ||
+          formFields.title.length > 40 ||
+          formFields.owner.length > 40
         }
         className="new-board-form__form-submit-btn"
       ></input>
