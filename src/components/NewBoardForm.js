@@ -1,11 +1,4 @@
-front-end-inspiration-board/src/components/NewBoardForm.js /
-@asya0107
-asya0107 board, boardlist, and newboard form finished
-Latest commit 0757b53 4 days ago
- History
- 2 contributors
-@ashapa@asya0107
-56 lines (55 sloc)  1.42 KB
+
    
 import { useState } from 'react';
 import PropTypes from "prop-types";
@@ -45,13 +38,13 @@ const onFormSubmit = (event) => {
                <input
                    title="fulltitle"
                    value={formFields.title}
-                   onChange={ontitleChange} />
+                   onChange={onTitleChange} />
            </div>
            <div>
                <label htmlFor="owner">owner:</label>
                <input title="owner"
                    value={formFields.owner}
-                   onChange={onownerChange} />
+                   onChange={onOwnerChange} />
            </div>
            <input
                type="submit"

@@ -94,7 +94,7 @@ function App() {
 
   const deleteAll = () => {
     if (
-      window.confirm("Are you really sure? Please be gentle with this demo.")
+      window.confirm("Are you sure?")
     ) {
       axios
         .delete(`${process.env.REACT_APP_BACKEND_URL}/destroy_all`)
