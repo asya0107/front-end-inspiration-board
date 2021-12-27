@@ -28,3 +28,4 @@ BoardList.propTypes = {
   onUpdateBoard: PropTypes.func.isRequired,
 };
 export default BoardList;
+© 2021 GitHub, Inc.

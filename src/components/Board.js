@@ -1,12 +1,11 @@
 const Board = (props) => {
-    // this is finalized
+  // this is finalized
   return (
-        <div onClick={() => props.onBoardSelect(props.board)}>
-          {props.board.title}
-        </div>
-      );
-    };
-  
+    <div onClick={() => props.onBoardSelect(props.board)}>
+      {props.board.title}
+    </div>
+  );
+};
 
 Board.propTypes = {
   id: PropTypes.number.isRequired,
