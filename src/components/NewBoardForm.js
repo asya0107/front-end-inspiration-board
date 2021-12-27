@@ -1,7 +1,6 @@
 
    
 import { useState } from 'react';
-import PropTypes from "prop-types";
 
 const newBoardForm = (props) => {
    const [formFields, setFormFields] = useState({
@@ -31,28 +30,43 @@ const onFormSubmit = (event) => {
            owner: '',
        });
    };
+   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
+  const toggleNewBoardForm = () => {
+    setIsBoardFormVisible(!isBoardFormVisible);
+  };
    return (
-       <form onSubmit={onFormSubmit}>
-           <div>
-               <label htmlFor="fulltitle">title:</label>
-               <input
-                   title="fulltitle"
-                   value={formFields.title}
-                   onChange={onTitleChange} />
-           </div>
-           <div>
-               <label htmlFor="owner">owner:</label>
-               <input title="owner"
-                   value={formFields.owner}
-                   onChange={onOwnerChange} />
-           </div>
-           <input
-               type="submit"
-               value="Add Board" />
-      </form>
-   );
+       <section>
+        <form onSubmit={onFormSubmit}>
+            <div>
+                <label htmlFor="fulltitle">title:</label>
+                <input
+                    title="fulltitle"
+                    value={formFields.title}
+                    onChange={onTitleChange} />
+            </div>
+            <div>
+                <label htmlFor="owner">owner:</label>
+                <input title="owner"
+                    value={formFields.owner}
+                    onChange={onOwnerChange} />
+            </div>
+            <input
+                type="submit"
+                value="Add Board" />
+        </form>
+        <span
+        onClick={toggleNewBoardForm}
+        className="new-board-form__toggle-btn"
+        >
+        {isBoardFormVisible
+            ? "Hide New Board Form"
+            : "Show New Board Form"}
+        </span>
+        </section>
+    );
+    };
+newBoardForm.propTypes = {
+addBoardCallback: PropTypes.func.isRequired
 };
-NewBoardForm.propTypes = {
-   addBoardCallback: PropTypes.func.isRequired
-};
-export default NewBoardForm;
+
+export default newBoardForm;

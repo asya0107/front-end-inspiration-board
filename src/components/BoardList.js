@@ -3,6 +3,7 @@ import Board from "./Board";
 
 // this is finalized
 const BoardList = (props) => {
+  
   const boardComponents = props.board.map((board) => {
     return (
       <li>
@@ -25,6 +26,7 @@ BoardList.propTypes = {
       owner: PropTypes.string.isRequired,
     })
   ),
-  onUpdateBoard: PropTypes.func.isRequired,
+  // onUpdateBoard: PropTypes.func.isRequired,
+  selectBoard: PropTypes.func.isRequired
 };
 export default BoardList;

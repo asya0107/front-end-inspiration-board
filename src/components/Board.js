@@ -1,3 +1,6 @@
+
+import PropTypes from "prop-types";
+
 const Board = (props) => {
   // this is finalized
   return (
