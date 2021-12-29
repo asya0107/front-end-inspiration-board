@@ -3,11 +3,12 @@ import Board from "./Board";
 
 // this is finalized
 const BoardList = (props) => {
+  console.log(props)
   
-  const boardComponents = props.board.map((board) => {
+  const boardComponents = props.boards.map((board) => {
     return (
       <li>
-        <Board board={board} onBoardSelect={selectBoard}></Board>
+        <Board board={board} onBoardSelect={props.selectBoard}></Board>
       </li>
     );
   });

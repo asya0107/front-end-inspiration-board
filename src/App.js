@@ -10,18 +10,18 @@ function App() {
   const [boardsData, setBoardsData] = useState([
     {
       id: 1,
-      message: "First card message",
-      likes_count: 0,
+      title: "Board 1",
+      owner: "Asya",
     },
     {
       id: 2,
-      message: "Second card message",
-      likes_count: 0,
+      title: "Board 2",
+      owner: "Asha",
     },
     {
       id: 3,
-      message: "Third card message",
-      likes_count: 0,
+      title: "Board 3",
+      owner: "Audrey",
     },
   ]);
 
@@ -31,14 +31,14 @@ function App() {
     board_id: null,
   });
   // this is the get request we need
-  // const [boardsData, setBoardsData] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {})
-  //     .then((response) => {
-  //       setBoardsData(response.data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/boards")
+      .then((response) => {
+        setBoardsData(response.data);
+        console.log(response.data)
+      });
+  }, []);
 
   const selectBoard = (board) => {
     setSelectedBoard(board);
@@ -76,8 +76,12 @@ function App() {
 
   return (
     <div className="page__container">
+      <BoardList selectBoard = {selectBoard} boards = {boardsData}/>
       <footer>
-        <span onClick={deleteAll} className="footer__delete-btn">
+        {/* <span onClick={deleteAll} className="footer__delete-btn">
+          here
+        </span>{" "} */}
+        <span className="footer__delete-btn">
           here
         </span>{" "}
         to delete all boards and cards!
@@ -88,7 +92,7 @@ function App() {
 
 export default App;
 
-<div className="content__container">
+{/* <div className="content__container">
   <h1>Inspiration Board</h1>
   <section className="boards__container">
     <section className="new-board-form__container">
@@ -113,4 +117,4 @@ export default App;
     </section>
   </section>
   {selectedBoard.board_id ? <CardsList board={selectBoard}></CardsList> : ""}
-</div>;
+</div>; */}

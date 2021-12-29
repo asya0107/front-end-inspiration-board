@@ -1,8 +1,9 @@
 
    
 import { useState } from 'react';
+import PropTypes from "prop-types";
 
-const newBoardForm = (props) => {
+const NewBoardForm = (props) => {
    const [formFields, setFormFields] = useState({
        title: '',
        owner: ''
@@ -65,8 +66,8 @@ const onFormSubmit = (event) => {
         </section>
     );
     };
-newBoardForm.propTypes = {
-addBoardCallback: PropTypes.func.isRequired
-};
+// newBoardForm.propTypes = {
+// addBoardCallback: PropTypes.func.isRequired
+// };
 
-export default newBoardForm;
+export default NewBoardForm;
