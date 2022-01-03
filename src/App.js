@@ -8,19 +8,19 @@ import Board from "./components/Board";
 function App() {
   const [boardsData, setBoardsData] = useState([
     {
-      id: 1,
-      message: "First card message",
-      likes_count: 0,
+      board_id: 1,
+      title: "Board 1",
+      owner: "Person 1",
     },
     {
-      id: 2,
-      message: "Second card message",
-      likes_count: 0,
+      board_id: 2,
+      title: "Board 2",
+      owner: "Person 2",
     },
     {
-      id: 3,
-      message: "Third card message",
-      likes_count: 0,
+      board_id: 3,
+      title: "Board 3",
+      owner: "Person 3",
     },
   ]);
 
@@ -34,6 +34,8 @@ function App() {
   // useEffect(() => {
   //   axios
   //     .get(`${process.env.REACT_APP_BACKEND_URL}/boards`, {})
+  //     // response is an object that contains data as a key. The value of data is another object
+  //     // `data` is the response that was provided by the server
   //     .then((response) => {
   //       setBoardsData(response.data);
   //     });
@@ -58,14 +60,14 @@ function App() {
     // Logic to generate the next valid board ID
     // '(board) => board.id' is a function that returns the id of a board object;
     // map calls this function on every element in the newBoardList array, and returns an array of ids
-    //
+    // The next ID is then one more than the max from this list
     const nextId = Math.max(...newBoardList.map((board) => board.id)) + 1;
 
     // Push the new piece of data(that includes the generated nextId), and
     // assign it to key:value pairs in an object to be added to the
     // newStudentList(which is a list of objects)
     newBoardList.push({
-      id: nextId,
+      board_id: nextId,
       title: newBoard.title,
       owner: newBoard.owner,
     });
@@ -94,9 +96,7 @@ function App() {
   };
 
   const deleteAll = () => {
-    if (
-      window.confirm("Are you really sure? Please be gentle with this demo.")
-    ) {
+    if (window.confirm("Are you really sure you want to delete all?")) {
       axios
         .delete(`${process.env.REACT_APP_BACKEND_URL}/destroy_all`)
         .then((response) => {
@@ -156,7 +156,7 @@ function App() {
         )}
       </div>
       <footer>
-        <span>This is a demo! Please be gentle!</span> Click{" "}
+        Click{" "}
         <span onClick={deleteAll} className="footer__delete-btn">
           here
         </span>{" "}

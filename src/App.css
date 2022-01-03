@@ -1,6 +1,6 @@
 body {
   margin: 3rem;
-  font-family: Geneva, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   background: linear-gradient(to right top, #65dfc9, #d26ceb);
   /* background: linear-gradient(to right top, #65dfc9, #dfd765); */
@@ -25,8 +25,8 @@ h1 {
 
 h2 {
   /* border-bottom: 10px solid lightgrey; */
-  border: 2px solid black;
-  box-shadow: -15px 7px 1px black;
+  /* border: 2px solid black; */
+  /* box-shadow: -15px 7px 1px black; */
 }
 
 .boards__container {
@@ -40,8 +40,7 @@ h2 {
   max-height: 9rem;
   min-height: 9rem;
   overflow: scroll;
-  border: black solid 1px;
-  
+  /* border: black solid 1px; */
 }
 
 .new-board-form__container,
@@ -49,6 +48,13 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+
+  background: white;
+  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
+  padding: 2em;
+  border-radius: 30px;
 
 }
 
@@ -66,11 +72,16 @@ h2 {
   padding: 0.5em;
   background-color: white;
   border: 2px solid black;
+  border-radius: 10px;
 }
 
 .cards__container {
   display: grid;
   grid-template-columns: 2fr 1fr;
+    background: white;
+  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
+  padding: 2em;
+  border-radius: 30px;
 }
 
 .card-items__container {
@@ -81,8 +92,7 @@ h2 {
 }
 
 .card-item {
-  font-family: "Homemade Apple", cursive;
-  font-family: 'Concert One', cursive;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(255, 248, 165);
   box-shadow: -10px 7px 7px lightgrey;
   min-height: 200px;
@@ -114,6 +124,7 @@ h2 {
 
 input {
   box-sizing: content-box;
+  border-radius: 7px;
 }
 
 .invalid-form-input {

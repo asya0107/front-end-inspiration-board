@@ -4,7 +4,7 @@ const Card = (props) => {
       <p className="card-item__message">{props.card.message}</p>
       <ul className="card-item__controls">
         <li>
-          <p>{props.card.likes_count} 👍🏾</p>
+          <p>{props.card.likes_count} 💜</p>
         </li>
         <li>
           <p onClick={() => props.plusOneCardItem(props.card)}>+1</p>

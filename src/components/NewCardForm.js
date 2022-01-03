@@ -12,17 +12,28 @@ const NewCardForm = (props) => {
   // MessageChangeHandler is the event Handler that updates state for the onChange attribute in <input>
   // MessageChangeHandler takes in one argument, changeEvent, which we expect to be information about the event that triggered our event handler.
   // Note: every event-handling function is automatically passed an Event object, whether we use it or not
-  const MessageChangeHandler = (changeEvent) => {
+  const messageChangeHandler = (changeEvent) => {
     // call the setMessage function so that the state(i.e. message) will now equal whatever the input value is
     setMessage(changeEvent.target.value);
   };
 
-  const submitNewCard = (changeEvent) => {
-    changeEvent.preventDefault();
+  const submitNewCard = (submitEvent) => {
+    submitEvent.preventDefault();
     const newCard = {message: message}
     props.postNewCard(newCard);
     setMessage("");
   };
+
+// const messageLength = () => {
+//   if (message.length === 0 || message.length > 40) {
+//     alert("Invalid message length! :(");
+//     <input className="invalid-form-input"></input>;
+//     } else {
+//       <input className=""></input>;
+//     }
+//   };
+
+
 
   return (
     <section className="new-card-form__container">
@@ -30,16 +41,17 @@ const NewCardForm = (props) => {
       <form onSubmit={submitNewCard} className="new-card-form__form">
         <label>Message</label>
         {/* the <input type="text"> element listens for change events. By setting the value of
-        onChange to MessageChangeHandler, our web app invokes MessageChangeHandler whenever we
+        onChange to messageChangeHandler, the web app invokes messageChangeHandler whenever we
         change the input */}
         <input
           type="text"
           className={
+            // messageLength
             message.length === 0 || message.length > 40
               ? "invalid-form-input"
               : ""
           }
-          onChange={MessageChangeHandler}
+          onChange={messageChangeHandler}
           value={message}
         ></input>
         <p>Preview: {message}</p>

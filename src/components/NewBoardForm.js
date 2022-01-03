@@ -15,11 +15,21 @@ const NewBoardForm = (props) => {
     setFormFields({ ...formFields, owner: changeEvent.target.value });
   };
 
-  const submitNewBoard = (e) => {
-    e.preventDefault();
-    props.createNewBoard({ title, owner });
-    setTitle("");
-    setOwner("");
+  const submitNewBoard = (submitEvent) => {
+    // prevent the default behavior of html forms from refreshing the page when a form is submitted
+    submitEvent.preventDefault();
+    // call the createNewBoard function that was passed into the <NewBoardForm> component(as a prop from within App.js) in order to create a new board upon submission of a new board form
+    // line 23 passes in a new object(containing the current state of formFields) to the createNewBoard function
+    props.createNewBoard({ 
+      title: formFields.title, 
+      owner: formFields.owner
+    });
+    
+    // reset the formFields to be empty again
+    setFormFields({
+      title: "",
+      owner: "",
+    });
   };
 
   return (
