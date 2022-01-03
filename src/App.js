@@ -82,7 +82,7 @@ function App() {
           here
         </span>{" "} */}
         <span className="footer__delete-btn">
-          here
+          Click here
         </span>{" "}
         to delete all boards and cards!
       </footer>
