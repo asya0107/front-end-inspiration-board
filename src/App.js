@@ -77,12 +77,13 @@ function App() {
   // };
 
   const createNewBoard = (newBoard) => {
+    console.log(newBoard);
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
       .then((response) => {
-        console.log("Response:", response.data.board);
+        console.log("Response:", response.data);
         const boards = [...boardsData];
-        boards.push(response.data.board);
+        boards.push(response.data);
         setBoardsData(boards);
       })
       .catch((error) => {
@@ -96,10 +97,10 @@ function App() {
     setIsBoardFormVisible(!isBoardFormVisible);
   };
 
-  const deleteAll = () => {
+  const deleteBoards = () => {
     if (window.confirm("Are you really sure you want to delete all?")) {
       axios
-        .delete(`${process.env.REACT_APP_BACKEND_URL}/destroy_all`)
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/delete`)
         .then((response) => {
           console.log("response", response.data);
           setBoardsData([response.data.default_board]);
@@ -116,6 +117,30 @@ function App() {
     }
   };
 
+  const makeBoardFormVisible = () => {
+    if (isBoardFormVisible) {
+      return <NewBoardForm createNewBoard={createNewBoard}></NewBoardForm>;
+    } else {
+      return "";
+    }
+  };
+
+  const hideBoardForm = () => {
+    if (isBoardFormVisible) {
+      return <span>"Hide New Board Form"</span>;
+    } else {
+      return <span>"Show New Board Form"</span>;
+    }
+  };
+
+  const showSelectedBoard = (selectedBoard) => {
+    if (selectedBoard.board_id) {
+      return `${selectedBoard.title} - ${selectedBoard.owner}`;
+    } else {
+      return <p>"Select a Board from the Board List!"</p>;
+    }
+  };
+
   return (
     <div className="page__container">
       <div className="content__container">
@@ -123,32 +148,22 @@ function App() {
         <section className="boards__container">
           <section className="new-board-form__container">
             <h2>Create a New Board</h2>
-            {isBoardFormVisible ? (
-              <NewBoardForm createNewBoard={createNewBoard}></NewBoardForm>
-            ) : (
-              ""
-            )}
+            {makeBoardFormVisible()}
             <span
               onClick={toggleNewBoardForm}
               className="new-board-form__toggle-btn"
             >
-              {isBoardFormVisible
-                ? "Hide New Board Form"
-                : "Show New Board Form"}
+              {hideBoardForm()}
             </span>
           </section>
           <section className="new-board-form__container">
-            <BoardsList selectBoard={selectBoard} boards={boardsData}/>
+            <BoardsList selectBoard={selectBoard} boards={boardsData} />
             {/* <h2>Boards</h2> */}
             {/* <ol className="boards__list">{boardsElements}</ol> */}
           </section>
           <section className="new-board-form__container">
             <h2>Selected Board</h2>
-            <p>
-              {selectedBoard.board_id
-                ? `${selectedBoard.title} - ${selectedBoard.owner}`
-                : "Select a Board from the Board List!"}
-            </p>
+            <p>{showSelectedBoard(selectedBoard)}</p>
           </section>
         </section>
         {selectedBoard.board_id ? (
@@ -159,7 +174,7 @@ function App() {
       </div>
       <footer>
         Click{" "}
-        <span onClick={deleteAll} className="footer__delete-btn">
+        <span onClick={deleteBoards} className="footer__delete-btn">
           here
         </span>{" "}
         to delete all boards and cards!

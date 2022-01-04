@@ -19,19 +19,18 @@ const NewCardForm = (props) => {
 
   const submitNewCard = (submitEvent) => {
     submitEvent.preventDefault();
-    const newCard = {message: message}
+    const newCard = {message}
     props.postNewCard(newCard);
     setMessage("");
   };
 
-// const messageLength = () => {
-//   if (message.length === 0 || message.length > 40) {
-//     alert("Invalid message length! :(");
-//     <input className="invalid-form-input"></input>;
-//     } else {
-//       <input className=""></input>;
-//     }
-//   };
+const messageLength = () => {
+  if (message.length === 0 || message.length > 40) {
+    return <input className="invalid-form-input"></input>;
+    } else {
+      return <input className=""></input>;
+    }
+  };
 
 
 
@@ -45,12 +44,7 @@ const NewCardForm = (props) => {
         change the input */}
         <input
           type="text"
-          className={
-            // messageLength
-            message.length === 0 || message.length > 40
-              ? "invalid-form-input"
-              : ""
-          }
+          className={messageLength}
           onChange={messageChangeHandler}
           value={message}
         ></input>

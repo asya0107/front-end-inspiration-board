@@ -1,6 +1,6 @@
 body {
   margin: 3rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   background: linear-gradient(to right top, #65dfc9, #d26ceb);
   /* background: linear-gradient(to right top, #65dfc9, #dfd765); */
@@ -8,7 +8,7 @@ body {
 
 h1,
 h2 {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 0.6em 1em;
   display: inline-block;
   color: black;
@@ -16,8 +16,7 @@ h2 {
 }
 
 h1 {
-  /* background-color: yellow; */
-  transform: rotate(-5deg) skew(-10deg);
+  place-items: center;
   background: white;
   background: linear-gradient(to right bottom, #ffff00, #ffffff4d);
   border-radius: 30px;
@@ -55,7 +54,6 @@ h2 {
   background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
   padding: 2em;
   border-radius: 30px;
-
 }
 
 .new-board-form__form,
@@ -76,7 +74,7 @@ h2 {
   border-radius: 10px;
 }
 
-.new-board-form__toggle-btn:hover{
+.new-board-form__toggle-btn:hover {
   color: #d26ceb;
   background: none;
   border: 2px solid #d26ceb;
@@ -99,8 +97,8 @@ h2 {
 }
 
 .card-item {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(255, 248, 165);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(250, 245, 104);
   box-shadow: -10px 7px 7px lightgrey;
   min-height: 200px;
   display: flex;
@@ -108,6 +106,7 @@ h2 {
   justify-content: center;
   padding: 2rem;
   flex-direction: column;
+  border-radius: 30px;
 }
 
 .card-item__controls {
@@ -125,7 +124,8 @@ h2 {
   word-break: break-word;
 }
 
-.card-item__controls > li:hover, .footer__delete-btn:hover {
+.card-item__controls > li:hover,
+.footer__delete-btn:hover {
   text-decoration: underline;
 }
 
@@ -136,7 +136,7 @@ input {
 
 .invalid-form-input {
   border: #d26ceb solid 1px;
-  box-shadow: 0 0 7px #d26ceb;;
+  box-shadow: 0 0 7px #d26ceb;
 }
 
 footer {
@@ -144,11 +144,11 @@ footer {
 }
 
 footer span {
-    color: #d26ceb;
-    text-decoration: none;
+  color: #d26ceb;
+  text-decoration: none;
 }
-footer span:hover{
-    text-decoration: underline;
+footer span:hover {
+  text-decoration: underline;
 }
 
 .page__container {
@@ -160,8 +160,10 @@ footer span:hover{
   padding: 2em;
   border-radius: 30px;
   margin: 1em;
+  text-align: center;
 }
 
 .content__container {
   flex: 1 0 auto;
+  text-align: center;
 }

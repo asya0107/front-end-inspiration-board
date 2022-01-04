@@ -20,16 +20,32 @@ const NewBoardForm = (props) => {
     submitEvent.preventDefault();
     // call the createNewBoard function that was passed into the <NewBoardForm> component(as a prop from within App.js) in order to create a new board upon submission of a new board form
     // line 23 passes in a new object(containing the current state of formFields) to the createNewBoard function
-    props.createNewBoard({ 
-      title: formFields.title, 
-      owner: formFields.owner
+    props.createNewBoard({
+      title: formFields.title,
+      owner: formFields.owner,
     });
-    
+
     // reset the formFields to be empty again
     setFormFields({
       title: "",
       owner: "",
     });
+  };
+
+  const titleLength = () => {
+    if (formFields.title.length === 0 || formFields.title.length > 40) {
+      return <input className="invalid-form-input"></input>;
+    } else {
+      return <input className=""></input>;
+    }
+  };
+
+  const ownerLength = () => {
+    if (formFields.owner.length === 0 || formFields.owner.length > 40) {
+      return <input className="invalid-form-input"></input>;
+    } else {
+      return <input className=""></input>;
+    }
   };
 
   return (
@@ -40,22 +56,14 @@ const NewBoardForm = (props) => {
         // The <input> element has its value set by state
         value={formFields.title}
         onChange={titleChangeHandler}
-        className={
-          formFields.title.length === 0 || formFields.title.length > 40
-            ? "invalid-form-input"
-            : ""
-        }
+        className={titleLength}
       ></input>
       <label>Owner's Name</label>
       <input
         type="text"
         value={formFields.owner}
         onChange={ownerChangeHandler}
-        className={
-          formFields.owner.length === 0 || formFields.owner.length > 40
-            ? "invalid-form-input"
-            : ""
-        }
+        className={ownerLength}
       ></input>
       <p>
         Preview: {formFields.title} - {formFields.owner}
