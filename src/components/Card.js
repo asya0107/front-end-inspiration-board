@@ -7,12 +7,12 @@ const Card = (props) => {
           <p>{props.card.likes_count} 💜</p>
         </li>
         <li>
-          <p onClick={() => props.plusOneCardItem(props.card)}>+1</p>
+          <p onClick={() => props.plusOneToCard(props.card)}>+1</p>
         </li>
         <li>
           <p
             className="card-item__delete"
-            onClick={() => props.deleteCardItem(props.card)}
+            onClick={() => props.deleteOneCard(props.card)}
           >
             Delete
           </p>

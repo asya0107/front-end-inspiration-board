@@ -71,14 +71,21 @@ h2 {
 .new-card-form__form-submit-btn {
   padding: 0.5em;
   background-color: white;
-  border: 2px solid black;
+  border: 2px solid #65dfc9;
+  color: #0e7979;
   border-radius: 10px;
+}
+
+.new-board-form__toggle-btn:hover{
+  color: #d26ceb;
+  background: none;
+  border: 2px solid #d26ceb;
 }
 
 .cards__container {
   display: grid;
   grid-template-columns: 2fr 1fr;
-    background: white;
+  background: white;
   background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
   padding: 2em;
   border-radius: 30px;
@@ -128,12 +135,20 @@ input {
 }
 
 .invalid-form-input {
-  border: red solid 1px;
-  box-shadow: 0 0 7px red;
+  border: #d26ceb solid 1px;
+  box-shadow: 0 0 7px #d26ceb;;
 }
 
 footer {
   text-align: center;
+}
+
+footer span {
+    color: #d26ceb;
+    text-decoration: none;
+}
+footer span:hover{
+    text-decoration: underline;
 }
 
 .page__container {
