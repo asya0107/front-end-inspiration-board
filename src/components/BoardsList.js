@@ -14,12 +14,10 @@ const BoardsList = (props) => {
     );
   });
 
-  
-
   return (
     <section>
       <h2>Boards</h2>
-      <ol >{boardComponents}</ol>
+      <ol>{boardComponents}</ol>
     </section>
   );
 };

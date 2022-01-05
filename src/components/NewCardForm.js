@@ -19,20 +19,18 @@ const NewCardForm = (props) => {
 
   const submitNewCard = (submitEvent) => {
     submitEvent.preventDefault();
-    const newCard = {message}
+    const newCard = { message };
     props.postNewCard(newCard);
     setMessage("");
   };
 
-const messageLength = () => {
-  if (message.length === 0 || message.length > 40) {
-    return <input className="invalid-form-input"></input>;
+  const messageLength = () => {
+    if (message.length === 0 || message.length > 40) {
+      return <input className="invalid-form-input"></input>;
     } else {
       return <input className=""></input>;
     }
   };
-
-
 
   return (
     <section className="new-card-form-container">
