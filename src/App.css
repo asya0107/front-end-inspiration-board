@@ -1,9 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
 body {
   margin: 3rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: black;
   background: linear-gradient(to right top, #65dfc9, #d26ceb);
-  /* background: linear-gradient(to right top, #65dfc9, #dfd765); */
+  background-image: url(https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1503&q=80);
+  background-size: cover;
+  background-repeat:no-repeat;
 }
 
 h1,
@@ -16,57 +20,54 @@ h2 {
 }
 
 h1 {
-  place-items: center;
-  background: white;
   background: linear-gradient(to right bottom, #ffff00, #ffffff4d);
+  box-shadow: -10px 7px 7px rgb(117, 114, 114);
   border-radius: 30px;
 }
 
-h2 {
-  /* border-bottom: 10px solid lightgrey; */
-  /* border: 2px solid black; */
-  /* box-shadow: -15px 7px 1px black; */
-}
-
-.boards__container {
+.boards-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 80px;
   margin: 2rem;
 }
 
-.boards__list {
-  max-height: 9rem;
-  min-height: 9rem;
-  overflow: scroll;
-  /* border: black solid 1px; */
-}
-
-.new-board-form__container,
-.new-card-form__container {
+.board-container,
+.new-card-form-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
 
   background: white;
-  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
+  background: linear-gradient(to right bottom, #ffffff, #ffffffb3);
   padding: 2em;
   border-radius: 30px;
+  box-shadow: -10px 7px 7px lightgrey;
 }
 
-.new-board-form__form,
-.new-card-form__form {
+.new-board-form,
+.new-card-form {
   display: flex;
   flex-direction: column;
   margin-bottom: 2em;
   width: 100%;
 }
 
-.new-board-form__form-submit-btn,
-.new-board-form__toggle-btn,
-.new-card-form__form-submit-btn {
+
+.submit-button {
+  padding: 0.5em;
+  background-color: #65dfc9;
+  border: 2px solid #65dfc9;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 5px rgb(226, 221, 221);
+}
+
+
+.hide-button {
   padding: 0.5em;
   background-color: white;
   border: 2px solid #65dfc9;
@@ -74,29 +75,29 @@ h2 {
   border-radius: 10px;
 }
 
-.new-board-form__toggle-btn:hover {
+.hide-button:hover {
   color: #d26ceb;
   background: none;
   border: 2px solid #d26ceb;
 }
 
-.cards__container {
+.cards-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
   background: white;
-  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
+  background: linear-gradient(to right bottom, #ffffff, #ffffffa4);
   padding: 2em;
   border-radius: 30px;
 }
 
-.card-items__container {
+.card-elements-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
   margin: 2rem;
 }
 
-.card-item {
+.card {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(250, 245, 104);
   box-shadow: -10px 7px 7px lightgrey;
@@ -109,38 +110,53 @@ h2 {
   border-radius: 30px;
 }
 
-.card-item__controls {
-  font-family: "Open Sans", sans-serif;
-  list-style-type: none;
-  display: flex;
-  padding: 0;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.card-item__message {
+.card-message {
   text-align: center;
   font-size: 1.4rem;
   word-break: break-word;
 }
 
-.card-item__controls > li:hover,
-.footer__delete-btn:hover {
-  text-decoration: underline;
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.card-footer-icon:hover {
+  text-decoration: underline;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  transform:scale(1.3);
+  cursor: pointer;
+}
+
+
 
 input {
   box-sizing: content-box;
+  height: 25px;
+  border: 1px solid lightgrey;
   border-radius: 7px;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 10px;
 }
 
-.invalid-form-input {
+.invalid-input {
   border: #d26ceb solid 1px;
   box-shadow: 0 0 7px #d26ceb;
 }
 
 footer {
   text-align: center;
+  background: linear-gradient(to right bottom, #ffffff, #ffffffa4);
+  width: fit-content;
+  padding: 1em;
+  border-radius: 30px;
+  margin: 1em;
 }
 
 footer span {
@@ -151,19 +167,13 @@ footer span:hover {
   text-decoration: underline;
 }
 
-.page__container {
+.entire-page {
   display: flex;
   flex-direction: column;
   min-height: 80vh;
-  background: white;
-  background: linear-gradient(to right bottom, #ffffffb3, #ffffff4d);
   padding: 2em;
   border-radius: 30px;
   margin: 1em;
   text-align: center;
 }
 
-.content__container {
-  flex: 1 0 auto;
-  text-align: center;
-}

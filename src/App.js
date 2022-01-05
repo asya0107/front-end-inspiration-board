@@ -3,35 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CardsList from "./components/CardsList";
 import NewBoardForm from "./components/NewBoardForm";
-import Board from "./components/Board";
 import BoardsList from "./components/BoardsList";
 
-function App() {
-  // const [boardsData, setBoardsData] = useState([
-  //   {
-  //     board_id: 1,
-  //     title: "Board 1",
-  //     owner: "Person 1",
-  //   },
-  //   {
-  //     board_id: 2,
-  //     title: "Board 2",
-  //     owner: "Person 2",
-  //   },
-  //   {
-  //     board_id: 3,
-  //     title: "Board 3",
-  //     owner: "Person 3",
-  //   },
-  // ]);
-
+function App() {  
+  const [boardsData, setBoardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState({
     title: "",
     owner: "",
     board_id: null,
   });
-
-  const [boardsData, setBoardsData] = useState([]);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
@@ -46,43 +26,20 @@ function App() {
     setSelectedBoard(board);
   };
 
-  // const boardsElements = boardsData.map((board) => {
-  //   return (
-  //     <li>
-  //       <Board board={board} onBoardSelect={selectBoard}></Board>
-  //     </li>
-  //   );
-  // });
 
-  // const createNewBoard = (newBoard) => {
-  //   // Duplicate the board list
-  //   const newBoardList = [...boardsData];
-
-  //   // Logic to generate the next valid board ID
-  //   // '(board) => board.id' is a function that returns the id of a board object;
-  //   // map calls this function on every element in the newBoardList array, and returns an array of ids
-  //   // The next ID is then one more than the max from this list
-  //   const nextId = Math.max(...newBoardList.map((board) => board.id)) + 1;
-
-  //   // Push the new piece of data(that includes the generated nextId), and
-  //   // assign it to key:value pairs in an object to be added to the
-  //   // newStudentList(which is a list of objects)
-  //   newBoardList.push({
-  //     board_id: nextId,
-  //     title: newBoard.title,
-  //     owner: newBoard.owner,
-  //   });
-  //   // Update the boardsData
-  //   setBoardsData(newBoardList);
-  // };
 
   const createNewBoard = (newBoard) => {
-    console.log(newBoard);
+    // newBoard is a new object created on line 23 in the NewBoardForm component, which contains key:value pairs of {title: 'Board 1', owner: 'Person 1'}. It will become the request body for this post request
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, newBoard)
+      // response is an object containing several keys, one which is 'data', another of which is 'status'
+      // axios defines "success" as any response with a 2XX status code. Therefore, responses with a 2XX status code will go into then, and all responses outside a 2XX status code will go into catch.
       .then((response) => {
+        // 'response.data' is also an object: '{board_id: 1, owner: 'Person 1', title: 'Board 1'}', it's the data given back by the API response
         console.log("Response:", response.data);
+        // duplicate boardsData(i.e. the state holding the list of boards) and store it in the const variable 'boards', which will help React detect the change to the list of boards
         const boards = [...boardsData];
+        // push the new piece of data that came back from the sever(that includes the generated board_id), into boards (which is a list of objects)
         boards.push(response.data);
         setBoardsData(boards);
       })
@@ -93,7 +50,7 @@ function App() {
   };
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  const toggleNewBoardForm = () => {
+  const hideNewBoardForm = () => {
     setIsBoardFormVisible(!isBoardFormVisible);
   };
 
@@ -125,11 +82,11 @@ function App() {
     }
   };
 
-  const hideBoardForm = () => {
+  const hideBoardFormButton = () => {
     if (isBoardFormVisible) {
-      return <span>"Hide New Board Form"</span>;
+      return <span>Hide New Board Form</span>;
     } else {
-      return <span>"Show New Board Form"</span>;
+      return <span>Show New Board Form</span>;
     }
   };
 
@@ -137,31 +94,29 @@ function App() {
     if (selectedBoard.board_id) {
       return `${selectedBoard.title} - ${selectedBoard.owner}`;
     } else {
-      return <p>"Select a Board from the Board List!"</p>;
+      return <p>Select a Board from the Board List!</p>;
     }
   };
 
   return (
-    <div className="page__container">
-      <div className="content__container">
+    <div className="entire-page">
+      <div>
         <h1>Inspiration Board</h1>
-        <section className="boards__container">
-          <section className="new-board-form__container">
+        <section className="boards-container">
+          <section className="board-container">
             <h2>Create a New Board</h2>
             {makeBoardFormVisible()}
             <span
-              onClick={toggleNewBoardForm}
-              className="new-board-form__toggle-btn"
+              onClick={hideNewBoardForm}
+              className="hide-button"
             >
-              {hideBoardForm()}
+              {hideBoardFormButton()}
             </span>
           </section>
-          <section className="new-board-form__container">
+          <section className="board-container">
             <BoardsList selectBoard={selectBoard} boards={boardsData} />
-            {/* <h2>Boards</h2> */}
-            {/* <ol className="boards__list">{boardsElements}</ol> */}
           </section>
-          <section className="new-board-form__container">
+          <section className="board-container">
             <h2>Selected Board</h2>
             <p>{showSelectedBoard(selectedBoard)}</p>
           </section>
@@ -174,7 +129,7 @@ function App() {
       </div>
       <footer>
         Click{" "}
-        <span onClick={deleteBoards} className="footer__delete-btn">
+        <span onClick={deleteBoards} className="footer-delete-button">
           here
         </span>{" "}
         to delete all boards and cards!
@@ -184,3 +139,53 @@ function App() {
 }
 
 export default App;
+
+// TEST DATA
+
+  // const [boardsData, setBoardsData] = useState([
+  //   {
+  //     board_id: 1,
+  //     title: "Board 1",
+  //     owner: "Person 1",
+  //   },
+  //   {
+  //     board_id: 2,
+  //     title: "Board 2",
+  //     owner: "Person 2",
+  //   },
+  //   {
+  //     board_id: 3,
+  //     title: "Board 3",
+  //     owner: "Person 3",
+  //   },
+  // ]);
+
+    // const boardsElements = boardsData.map((board) => {
+  //   return (
+  //     <li>
+  //       <Board board={board} onBoardSelect={selectBoard}></Board>
+  //     </li>
+  //   );
+  // });
+
+  // const createNewBoard = (newBoard) => {
+  //   // Duplicate the board list
+  //   const newBoardList = [...boardsData];
+
+  //   // Logic to generate the next valid board ID
+  //   // '(board) => board.id' is a function that returns the id of a board object;
+  //   // map calls this function on every element in the newBoardList array, and returns an array of ids
+  //   // The next ID is then one more than the max from this list
+  //   const nextId = Math.max(...newBoardList.map((board) => board.id)) + 1;
+
+  //   // Push the new piece of data(that includes the generated nextId), and
+  //   // assign it to key:value pairs in an object to be added to the
+  //   // newStudentList(which is a list of objects)
+  //   newBoardList.push({
+  //     board_id: nextId,
+  //     title: newBoard.title,
+  //     owner: newBoard.owner,
+  //   });
+  //   // Update the boardsData
+  //   setBoardsData(newBoardList);
+  // };

@@ -2,7 +2,6 @@ import Board from "./Board";
 
 const BoardsList = (props) => {
   console.log(props);
-
   const boardComponents = props.boards.map((board) => {
     return (
       <li>
@@ -10,10 +9,11 @@ const BoardsList = (props) => {
       </li>
     );
   });
+
   return (
     <section>
       <h2>Boards</h2>
-      <ol className="boards__list">{boardComponents}</ol>
+      <ol >{boardComponents}</ol>
     </section>
   );
 };

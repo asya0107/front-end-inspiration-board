@@ -42,28 +42,30 @@ const NewBoardForm = (props) => {
 
   const ownerLength = () => {
     if (formFields.owner.length === 0 || formFields.owner.length > 40) {
-      return <input className="invalid-form-input"></input>;
+      return <input className="invalid-input"></input>;
     } else {
       return <input className=""></input>;
     }
   };
 
   return (
-    <form onSubmit={submitNewBoard} className="new-board-form__form">
-      <label>Title</label>
+    <form onSubmit={submitNewBoard} className="new-board-form">
       <input
         type="text"
         // The <input> element has its value set by state
         value={formFields.title}
         onChange={titleChangeHandler}
         className={titleLength}
+        placeholder="Title"
+        required
       ></input>
-      <label>Owner's Name</label>
       <input
         type="text"
         value={formFields.owner}
         onChange={ownerChangeHandler}
         className={ownerLength}
+        placeholder="Owner's Name"
+        required
       ></input>
       <p>
         Preview: {formFields.title} - {formFields.owner}
@@ -76,7 +78,7 @@ const NewBoardForm = (props) => {
           formFields.title.length > 40 ||
           formFields.owner.length > 40
         }
-        className="new-board-form__form-submit-btn"
+        className="submit-button"
       ></input>
     </form>
   );

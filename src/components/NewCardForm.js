@@ -35,10 +35,9 @@ const messageLength = () => {
 
 
   return (
-    <section className="new-card-form__container">
+    <section className="new-card-form-container">
       <h2>Create a New Card</h2>
-      <form onSubmit={submitNewCard} className="new-card-form__form">
-        <label>Message</label>
+      <form onSubmit={submitNewCard} className="new-card-form">
         {/* the <input type="text"> element listens for change events. By setting the value of
         onChange to messageChangeHandler, the web app invokes messageChangeHandler whenever we
         change the input */}
@@ -47,12 +46,14 @@ const messageLength = () => {
           className={messageLength}
           onChange={messageChangeHandler}
           value={message}
+          placeholder="Message"
+          required
         ></input>
         <p>Preview: {message}</p>
         <input
           type="Submit"
           disabled={message.length === 0 || message.length > 40}
-          className="new-card-form__form-submit-btn"
+          className="submit-button"
         ></input>
       </form>
     </section>
