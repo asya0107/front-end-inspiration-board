@@ -98,6 +98,15 @@ function App() {
     }
   };
 
+  const showCardsList = () => {
+    if (selectedBoard.board_id) {
+      return <CardsList board={selectedBoard}></CardsList>;
+    } else {
+      return "";
+    }
+  };
+
+
   return (
     <div className="entire-page">
       <div>
@@ -106,10 +115,7 @@ function App() {
           <section className="board-container">
             <h2>Create a New Board</h2>
             {makeBoardFormVisible()}
-            <span
-              onClick={hideNewBoardForm}
-              className="hide-button"
-            >
+            <span onClick={hideNewBoardForm} className="hide-button">
               {hideBoardFormButton()}
             </span>
           </section>
@@ -121,11 +127,7 @@ function App() {
             <p>{showSelectedBoard(selectedBoard)}</p>
           </section>
         </section>
-        {selectedBoard.board_id ? (
-          <CardsList board={selectedBoard}></CardsList>
-        ) : (
-          ""
-        )}
+        {showCardsList()}
       </div>
       <footer>
         Click{" "}
