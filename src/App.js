@@ -5,7 +5,7 @@ import CardsList from "./components/CardsList";
 import NewBoardForm from "./components/NewBoardForm";
 import BoardsList from "./components/BoardsList";
 
-function App() {  
+function App() {
   const [boardsData, setBoardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState({
     title: "",
@@ -25,8 +25,6 @@ function App() {
   const selectBoard = (board) => {
     setSelectedBoard(board);
   };
-
-
 
   const createNewBoard = (newBoard) => {
     // newBoard is a new object created on line 23 in the NewBoardForm component, which contains key:value pairs of {title: 'Board 1', owner: 'Person 1'}. It will become the request body for this post request
@@ -54,13 +52,35 @@ function App() {
     setIsBoardFormVisible(!isBoardFormVisible);
   };
 
+  const deleteOneBoard = (board) => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/boards/${board.board_id}`)
+      .then((response) => {
+        // filter returns a new array with only the elements where the filter expression: 'existingBoard.board_id !== board.board_id' returns true
+        // this filter expression is saying, "I only want the existing cards that don't have the passed in board.board_id"
+        const newBoardsData = boardsData.filter((existingBoard) => {
+          return existingBoard.board_id !== board.board_id;
+        });
+        setBoardsData(newBoardsData);
+        setSelectedBoard({
+          title: "",
+          owner: "",
+          board_id: null,
+        });
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        alert("Couldn't delete the board.");
+      });
+  };
+
   const deleteBoards = () => {
     if (window.confirm("Are you really sure you want to delete all?")) {
       axios
-        .delete(`${process.env.REACT_APP_BACKEND_URL}/delete`)
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/boards`)
         .then((response) => {
           console.log("response", response.data);
-          setBoardsData([response.data.default_board]);
+          setBoardsData([]);
           setSelectedBoard({
             title: "",
             owner: "",
@@ -106,7 +126,6 @@ function App() {
     }
   };
 
-
   return (
     <div className="entire-page">
       <div>
@@ -120,7 +139,11 @@ function App() {
             </span>
           </section>
           <section className="board-container">
-            <BoardsList selectBoard={selectBoard} boards={boardsData} />
+            <BoardsList
+              selectBoard={selectBoard}
+              boards={boardsData}
+              deleteOneBoard={deleteOneBoard}
+            />
           </section>
           <section className="board-container">
             <h2>Selected Board</h2>
@@ -141,53 +164,3 @@ function App() {
 }
 
 export default App;
-
-// TEST DATA
-
-  // const [boardsData, setBoardsData] = useState([
-  //   {
-  //     board_id: 1,
-  //     title: "Board 1",
-  //     owner: "Person 1",
-  //   },
-  //   {
-  //     board_id: 2,
-  //     title: "Board 2",
-  //     owner: "Person 2",
-  //   },
-  //   {
-  //     board_id: 3,
-  //     title: "Board 3",
-  //     owner: "Person 3",
-  //   },
-  // ]);
-
-    // const boardsElements = boardsData.map((board) => {
-  //   return (
-  //     <li>
-  //       <Board board={board} onBoardSelect={selectBoard}></Board>
-  //     </li>
-  //   );
-  // });
-
-  // const createNewBoard = (newBoard) => {
-  //   // Duplicate the board list
-  //   const newBoardList = [...boardsData];
-
-  //   // Logic to generate the next valid board ID
-  //   // '(board) => board.id' is a function that returns the id of a board object;
-  //   // map calls this function on every element in the newBoardList array, and returns an array of ids
-  //   // The next ID is then one more than the max from this list
-  //   const nextId = Math.max(...newBoardList.map((board) => board.id)) + 1;
-
-  //   // Push the new piece of data(that includes the generated nextId), and
-  //   // assign it to key:value pairs in an object to be added to the
-  //   // newStudentList(which is a list of objects)
-  //   newBoardList.push({
-  //     board_id: nextId,
-  //     title: newBoard.title,
-  //     owner: newBoard.owner,
-  //   });
-  //   // Update the boardsData
-  //   setBoardsData(newBoardList);
-  // };

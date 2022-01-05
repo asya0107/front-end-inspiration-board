@@ -1,7 +1,16 @@
 const Board = (props) => {
   return (
     <div onClick={() => props.onBoardSelect(props.board)}>
-      {props.board.title}
+      <p>
+        {" "}
+        {props.board.title}{" "}
+        <span
+          className="card-footer-icon"
+          onClick={() => props.deleteOneBoard(props.board)}
+        >
+          🗑
+        </span>
+      </p>
     </div>
   );
 };

@@ -3,7 +3,7 @@
 body {
   margin: 3rem;
   font-family: "Ubuntu", sans-serif;
-  color: black;
+  color: rgb(26, 57, 87);
   background: linear-gradient(to right top, #65dfc9, #d26ceb);
   background-image: url(https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1503&q=80);
   background-size: cover;
@@ -15,7 +15,7 @@ h2 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 0.6em 1em;
   display: inline-block;
-  color: black;
+  color: rgb(29, 55, 58);
   border-radius: 1rem;
 }
 

@@ -5,10 +5,16 @@ const BoardsList = (props) => {
   const boardComponents = props.boards.map((board) => {
     return (
       <li>
-        <Board board={board} onBoardSelect={props.selectBoard}></Board>
+        <Board
+          board={board}
+          onBoardSelect={props.selectBoard}
+          deleteOneBoard={props.deleteOneBoard}
+        ></Board>
       </li>
     );
   });
+
+  
 
   return (
     <section>
