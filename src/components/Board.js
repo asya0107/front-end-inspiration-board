@@ -1,18 +1,18 @@
-
-import PropTypes from "prop-types";
-
 const Board = (props) => {
-  // this is finalized
   return (
     <div onClick={() => props.onBoardSelect(props.board)}>
-      {props.board.title}
+      <p>
+        {" "}
+        {props.board.title}{" "}
+        <span
+          className="card-footer-icon"
+          onClick={() => props.deleteOneBoard(props.board)}
+        >
+          🗑
+        </span>
+      </p>
     </div>
   );
 };
 
-Board.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  owner: PropTypes.string.isRequired,
-};
 export default Board;

@@ -1,23 +1,23 @@
+import { MdDeleteForever } from "react-icons/md";
+
 const Card = (props) => {
   return (
-    <div className="card-item">
-      <p className="card-item__message">{props.card.message}</p>
-      <ul className="card-item__controls">
-        <li>
-          <p>{props.card.likes_count} 👍🏾</p>
-        </li>
-        <li>
-          <p onClick={() => props.plusOneCardItem(props.card)}>+1</p>
-        </li>
-        <li>
-          <p
-            className="card-item__delete"
-            onClick={() => props.deleteCardItem(props.card)}
-          >
-            Delete
-          </p>
-        </li>
-      </ul>
+    <div className="card">
+      <p className="card-message">{props.card.message}</p>
+      <div className="card-footer">
+        <p>{props.card.likes_count} 💜</p>
+        <p
+          className="card-footer-icon"
+          onClick={() => props.plusOneToCard(props.card)}
+        >
+          +1
+        </p>
+        <MdDeleteForever
+          className="delete-icon"
+          onClick={() => props.deleteOneCard(props.card)}
+          size="1.3em"
+        />
+      </div>
     </div>
   );
 };

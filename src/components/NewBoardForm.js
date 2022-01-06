@@ -1,73 +1,80 @@
-
-   
-import { useState } from 'react';
-import PropTypes from "prop-types";
+import { useState } from "react";
 
 const NewBoardForm = (props) => {
-   const [formFields, setFormFields] = useState({
-       title: '',
-       owner: ''
-   });
-   const onTitleChange = (event) => {
-       setFormFields({
-           ...formFields,
-           title: event.target.value
-       })
-   };
-   const onOwnerChange = (event) => {
-       setFormFields({
-           ...formFields,
-           owner: event.target.value
-       })
-   };
-const onFormSubmit = (event) => {
-       event.preventDefault();
-       props.addBoardCallback({
-           title: formFields.title,
-           owner: formFields.owner
-       });
-       setFormFields({
-           title: '',
-           owner: '',
-       });
-   };
-   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  const toggleNewBoardForm = () => {
-    setIsBoardFormVisible(!isBoardFormVisible);
+  const [formFields, setFormFields] = useState({
+    title: "",
+    owner: "",
+  });
+  const titleChangeHandler = (changeEvent) => {
+    setFormFields({ ...formFields, title: changeEvent.target.value });
   };
-   return (
-       <section>
-        <form onSubmit={onFormSubmit}>
-            <div>
-                <label htmlFor="fulltitle">title:</label>
-                <input
-                    title="fulltitle"
-                    value={formFields.title}
-                    onChange={onTitleChange} />
-            </div>
-            <div>
-                <label htmlFor="owner">owner:</label>
-                <input title="owner"
-                    value={formFields.owner}
-                    onChange={onOwnerChange} />
-            </div>
-            <input
-                type="submit"
-                value="Add Board" />
-        </form>
-        <span
-        onClick={toggleNewBoardForm}
-        className="new-board-form__toggle-btn"
-        >
-        {isBoardFormVisible
-            ? "Hide New Board Form"
-            : "Show New Board Form"}
-        </span>
-        </section>
-    );
-    };
-// newBoardForm.propTypes = {
-// addBoardCallback: PropTypes.func.isRequired
-// };
+  const ownerChangeHandler = (changeEvent) => {
+    setFormFields({ ...formFields, owner: changeEvent.target.value });
+  };
+
+  const submitNewBoard = (submitEvent) => {
+    submitEvent.preventDefault();
+    props.createNewBoard({
+      title: formFields.title,
+      owner: formFields.owner,
+    });
+
+    setFormFields({
+      title: "",
+      owner: "",
+    });
+  };
+
+  const titleLength = () => {
+    if (formFields.title.length === 0 || formFields.title.length > 40) {
+      return <input className="invalid-form-input"></input>;
+    } else {
+      return <input className=""></input>;
+    }
+  };
+
+  const ownerLength = () => {
+    if (formFields.owner.length === 0 || formFields.owner.length > 40) {
+      return <input className="invalid-input"></input>;
+    } else {
+      return <input className=""></input>;
+    }
+  };
+
+  return (
+    <form onSubmit={submitNewBoard} className="new-board-form">
+      <input
+        type="text"
+        // The <input> element has its value set by state
+        value={formFields.title}
+        onChange={titleChangeHandler}
+        className={titleLength}
+        placeholder="Title"
+        required
+      ></input>
+      <input
+        type="text"
+        value={formFields.owner}
+        onChange={ownerChangeHandler}
+        className={ownerLength}
+        placeholder="Owner's Name"
+        required
+      ></input>
+      <p>
+        Preview: {formFields.title} - {formFields.owner}
+      </p>
+      <input
+        type="Submit"
+        disabled={
+          formFields.title.length === 0 ||
+          formFields.owner.length === 0 ||
+          formFields.title.length > 40 ||
+          formFields.owner.length > 40
+        }
+        className="submit-button"
+      ></input>
+    </form>
+  );
+};
 
 export default NewBoardForm;
