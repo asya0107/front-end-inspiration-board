@@ -142,8 +142,8 @@ input {
 }
 
 .invalid-input {
-  border: #d26ceb solid 1px;
-  box-shadow: 0 0 7px #d26ceb;
+  border: #eb6cd6 solid 1px;
+  box-shadow: 0 0 7px #eb6cd6;
 }
 
 footer {
@@ -156,7 +156,7 @@ footer {
 }
 
 footer span {
-  color: #d26ceb;
+  color: #eb6cd6;
   text-decoration: none;
 }
 footer span:hover {
