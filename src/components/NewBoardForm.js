@@ -34,17 +34,17 @@ const NewBoardForm = (props) => {
 
   const titleLength = () => {
     if (formFields.title.length === 0 || formFields.title.length > 40) {
-      return <input className="invalid-form-input"></input>;
+      return "invalid-input";
     } else {
-      return <input className=""></input>;
+      return "";
     }
   };
 
   const ownerLength = () => {
     if (formFields.owner.length === 0 || formFields.owner.length > 40) {
-      return <input className="invalid-input"></input>;
+      return "invalid-input";
     } else {
-      return <input className=""></input>;
+      return "";
     }
   };
 
@@ -55,7 +55,7 @@ const NewBoardForm = (props) => {
         // The <input> element has its value set by state
         value={formFields.title}
         onChange={titleChangeHandler}
-        className={titleLength}
+        className={titleLength()}
         placeholder="Title"
         required
       ></input>
@@ -63,7 +63,7 @@ const NewBoardForm = (props) => {
         type="text"
         value={formFields.owner}
         onChange={ownerChangeHandler}
-        className={ownerLength}
+        className={ownerLength()}
         placeholder="Owner's Name"
         required
       ></input>

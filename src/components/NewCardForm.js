@@ -26,9 +26,9 @@ const NewCardForm = (props) => {
 
   const messageLength = () => {
     if (message.length === 0 || message.length > 40) {
-      return <input className="invalid-form-input"></input>;
+      return "invalid-input";
     } else {
-      return <input className=""></input>;
+      return "";
     }
   };
 
