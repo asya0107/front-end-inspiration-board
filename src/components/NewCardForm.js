@@ -27,7 +27,7 @@ const NewCardForm = (props) => {
       <form onSubmit={submitNewCard} className="new-card-form">
         <input
           type="text"
-          className={messageLength}
+          className={messageLength()}
           onChange={messageChangeHandler}
           value={message}
           placeholder="Message"
