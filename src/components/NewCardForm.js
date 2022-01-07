@@ -41,7 +41,7 @@ const NewCardForm = (props) => {
         change the input */}
         <input
           type="text"
-          className={messageLength}
+          className={messageLength()}
           onChange={messageChangeHandler}
           value={message}
           placeholder="Message"
