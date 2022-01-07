@@ -7,6 +7,7 @@ import BoardsList from "./components/BoardsList";
 
 function App() {
   const [boardsData, setBoardsData] = useState([]);
+  const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
   const [selectedBoard, setSelectedBoard] = useState({
     title: "",
     owner: "",
@@ -39,7 +40,6 @@ function App() {
       });
   };
 
-  const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
   const hideNewBoardForm = () => {
     setIsBoardFormVisible(!isBoardFormVisible);
   };

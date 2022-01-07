@@ -45,7 +45,6 @@ const NewBoardForm = (props) => {
     <form onSubmit={submitNewBoard} className="new-board-form">
       <input
         type="text"
-        // The <input> element has its value set by state
         value={formFields.title}
         onChange={titleChangeHandler}
         className={titleLength()}

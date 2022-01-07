@@ -55,16 +55,12 @@ const CardsList = (props) => {
     axios
       .patch(`${process.env.REACT_APP_BACKEND_URL}/cards/${card.card_id}`)
       .then((response) => {
-        // map() takes a function(i.e. a function that returns an object), calls it on every element in the cardsData array and returns an array of objects.
-        // newCardsData is a new array of ojects that map() built
         const newCardsData = cardsData.map((existingCard) => {
           if (existingCard.card_id !== card.card_id) {
             console.log(existingCard.card_id);
             console.log(card.card_id);
-            // existingCard refers to each object in the cardsData array
             return existingCard;
           } else {
-            // within the {}, ...card copies all the key:value pairs of the passed in 'card' object and the key:value pair 'likes_count: card.likes_count + 1' gets added to the copy of the card object
             return { ...card, likes_count: card.likes_count + 1 };
           }
         });
